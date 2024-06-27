@@ -1,23 +1,30 @@
-import logo from './logo.svg';
+import { useState } from 'react';
 import './App.css';
 
 function App() {
+
+  const [num, setNum] = useState(0);
+
+  const handleNumChange = (e) => {
+    setNum(Number(e.target.value));
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h2>Even Odd Number Checker With Short-Circuiting</h2>
+      <p>
+        <input type="text" value={num} onChange={handleNumChange} placeholder="Enter value for num"/>
+      </p>
+      <EvenOdd num={num}/>
+    </div>
+  );
+}
+
+function EvenOdd({ num }){
+  return(
+    <div>
+      {num % 2 === 0 && <p>The {num} is even</p>}
+      {num % 2 !== 0 && <p>The {num} is odd</p>}
     </div>
   );
 }
